@@ -1,0 +1,12 @@
+# Dependencies (installed with `npm install`; needed for the Mermaid renderer)
+node_modules/
+
+# Lesson logs and rendered figures, if this package is ever used as a project root
+lessons/
+viz/
+
+# OS junk
+.DS_Store
+
+# Editor
+*.swp
