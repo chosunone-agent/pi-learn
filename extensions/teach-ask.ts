@@ -240,6 +240,7 @@ export default function teachAsk(pi: ExtensionAPI) {
 				// option rows, so every answer path renders identically.
 				const result = await withUiLock(() =>
 					openChoice(ctx, {
+						label: kind === "diagnostic" ? "Diagnostic question" : kind === "checkpoint" ? "Checkpoint" : kind === "preference" ? "Preference question" : "Question",
 						title: question,
 						context,
 						options: [],
@@ -260,6 +261,7 @@ export default function teachAsk(pi: ExtensionAPI) {
 
 			const result = await withUiLock(() =>
 				openChoice(ctx, {
+					label: kind === "diagnostic" ? "Diagnostic question" : kind === "checkpoint" ? "Checkpoint" : kind === "preference" ? "Preference question" : "Question",
 					title: question,
 					context,
 					options,

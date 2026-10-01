@@ -217,6 +217,7 @@ export default function teachQuiz(pi: ExtensionAPI) {
 
 			const result: ChoiceResult | null = await withUiLock(() =>
 				openChoice(ctx, {
+					label: "Quiz",
 					title: question,
 					context,
 					options: displayed,

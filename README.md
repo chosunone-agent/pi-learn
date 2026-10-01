@@ -104,7 +104,8 @@ permission to redistribute its prose is not mine to grant.
 
 - `extensions/` — the `teach_ask` / `teach_quiz` tool schemas and result envelopes; the
   `kind` / `expectation` / `allowUnsure` fields; the shared-pop-up component in `lib/choice-view.ts`
-  (with its width-keyed render cache); `lib/grading.ts` including seeded shuffling and the
+  (with its width-keyed render cache, height cap, option-list windowing, and `ctrl+o` collapse);
+  `lib/grading.ts` including seeded shuffling and the
   display-order grading contract; `lib/question-schema.ts`; `lib/reconcile-tools.ts`;
   `lib/paths.ts`; and the `/learn-log` topic-vs-path behaviour.
 - `tools/` — the authoring-tool factory and all three renderer files; `renderers.ts`.
