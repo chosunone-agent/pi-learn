@@ -1,9 +1,15 @@
 # pi-learn
 
 A teaching and learning system for [pi](https://github.com/earendil-works/pi), tailored to this
-machine. It is an independent implementation inspired by
-[amosblomqvist/learn](https://github.com/amosblomqvist/learn), reworked around the tools and
-conventions actually present here.
+machine.
+
+> **Credit:** this is an independent implementation **based on
+> [amosblomqvist/learn](https://github.com/amosblomqvist/learn)** by
+> [@amosblomqvist](https://github.com/amosblomqvist) — "My AI learning system" (the system from the
+> video [How I Use AI to Learn Things](https://www.youtube.com/watch?v=kzcI5F4tGiU)). The teaching
+> philosophy, the ask/quiz/log split, and the maker-subagent approach to figures all come from that
+> project. What changed is described under [Differences from the original](#differences-from-the-original).
+> See also [Provenance](#provenance) for the licensing situation.
 
 ## What it gives you
 
@@ -20,7 +26,7 @@ conventions actually present here.
   author a figure, render it to a PNG, *look at it*, iterate until it is correct, and publish it to
   `<project>/viz/`.
 
-## Why this differs from the original
+## Differences from the original
 
 | Original | Here | Reason |
 |---|---|---|
@@ -84,3 +90,53 @@ as incorrect, and that an ambiguous exact-match edit is refused rather than gues
 
 Extensions use the documented event and tool APIs; the makers were exercised end to end through
 `pi-subagents` and produced real, visually confirmed PNGs.
+
+## Provenance
+
+This repository is a derivative work based on
+[amosblomqvist/learn](https://github.com/amosblomqvist/learn), which carries **no license file and no
+license statement**. Absent a license, that project's text is "all rights reserved" by default, so the
+permission to redistribute its prose is not mine to grant.
+
+### What is original here, and what is derived
+
+**Original to this repository** — written for this environment, no upstream counterpart:
+
+- `extensions/` — the `teach_ask` / `teach_quiz` tool schemas and result envelopes; the
+  `kind` / `expectation` / `allowUnsure` fields; the shared-pop-up component in `lib/choice-view.ts`
+  (with its width-keyed render cache); `lib/grading.ts` including seeded shuffling and the
+  display-order grading contract; `lib/question-schema.ts`; `lib/reconcile-tools.ts`;
+  `lib/paths.ts`; and the `/learn-log` topic-vs-path behaviour.
+- `tools/` — the authoring-tool factory and all three renderer files; `renderers.ts`.
+- `agents/graphviz-maker.md` — entirely new (Graphviz support does not exist upstream).
+- All of `tests/` — the upstream project ships no tests.
+- The `pi-subagents` wiring (`subagentOnlyExtensions`), the Linux renderer support, the per-project
+  `lessons/` + `viz/` layout, and the relative-markdown embed scheme.
+
+**Derived from upstream** — the design came from there, and the wording still overlaps. Percentages
+are measured eight-word-shingle overlap of the file's text against its upstream counterpart:
+
+| File | Verbatim overlap with upstream | Origin |
+|---|---|---|
+| `skills/teach/SKILL.md` | 14% | rewritten from the original teaching skill |
+| `skills/visualize/SKILL.md` | 28% | restructured for three makers; embeds changed |
+| `agents/mermaid-maker.md` | 15% | new file; workflow mirrors the original svg-maker/mermaid-maker |
+| `agents/graphviz-maker.md` | 0% | entirely new |
+| `agents/svg-maker.md` | 38% | same workflow; frontmatter and publish target changed |
+| `extensions/teach-ask.ts` | 3% | new schema (kind/expectation/allowUnsure) and new component |
+| `extensions/teach-quiz.ts` | 6% | same idea; grading anchored to display order |
+| `extensions/md-log.ts` | 11% | adapted paths + package layout |
+| `tools/mermaid-tools.ts` | 2% | three-tool loop kept; render returns inline image |
+
+Anything not listed above is either original or ordinary boilerplate. The teaching philosophy itself —
+two principles, unconditional truths first and derive-don't-assert — is the upstream author's idea and
+is credited as such at the top of this file; I reimplemented it for these tools rather than inventing it.
+
+### Reuse
+
+- The `LICENSE` file covers only the original work listed above.
+- **No license is asserted over the derived material**, because this repository cannot grant rights it
+  does not have.
+- If you intend to reuse this commercially or redistribute it widely, ask the upstream author first.
+- If you are the upstream author and would prefer changes, removal, or a specific attribution form,
+  please open an issue and it will be handled.
